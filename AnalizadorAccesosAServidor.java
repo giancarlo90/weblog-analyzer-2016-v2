@@ -19,13 +19,7 @@ public class AnalizadorAccesosAServidor
             Scanner sc = new Scanner(archivoALeer);
             while (sc.hasNextLine()) {
                 String lineaLeida = sc.nextLine();               
-                String[] elementosLinea = lineaLeida.split(" ");
-                Acceso accesoActual = new Acceso(Integer.parseInt(elementosLinea[0]), 
-                        Integer.parseInt(elementosLinea[1]), 
-                        Integer.parseInt(elementosLinea[2]),
-                        Integer.parseInt(elementosLinea[3]), 
-                        Integer.parseInt(elementosLinea[4]));               
-
+                Acceso accesoActual = new Acceso(lineaLeida);               
                 accesos.add(accesoActual);
             }
             sc.close();
@@ -62,7 +56,6 @@ public class AnalizadorAccesosAServidor
         return valorADevolver;
     }
 
-    
     public String paginaWebMasSolicitada() 
     {
         return "";
