@@ -38,7 +38,6 @@ public class Acceso
             codigoDeRespuesta = Integer.parseInt(elementosLinea[7]);
         }
     }
-    
 
     /**
      * Metodo que devuelve el año
@@ -78,5 +77,29 @@ public class Acceso
     public int getMinutos()
     {
         return minutos;
+    }
+
+    /**
+     * Metodo que devuelve la pagina web
+     */
+    public String getWeb()
+    {
+        return paginaWeb;
+    }
+
+    /**
+     * Metodo que devuelve la ip
+     */
+    public String getIp()
+    {
+        return ip;
+    }
+
+    /**
+     * Metodo que devuelve los minutos
+     */
+    public int getCodigoDeRespuesta()
+    {
+        return codigoDeRespuesta;
     }
 }
