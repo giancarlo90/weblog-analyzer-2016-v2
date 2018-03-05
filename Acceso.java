@@ -86,4 +86,20 @@ public class Acceso
     {
         return paginaWeb;
     }
+
+    /**
+     * Metodo que devuelve la ip
+     */
+    public String getIp()
+    {
+        return ip;
+    }
+
+    /**
+     * Metodo que devuelve los minutos
+     */
+    public int getCodigoDeRespuesta()
+    {
+        return codigoDeRespuesta;
+    }
 }

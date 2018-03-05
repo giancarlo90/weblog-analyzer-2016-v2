@@ -70,7 +70,7 @@ public class AnalizadorAccesosAServidor
     }
 
     /**
-     * Metodo para obtener la pagina web mas visita 
+     * Metodo para obtener la pagina web mas visitada 
      */
     public String paginaWebMasSolicitada() 
     {
@@ -100,9 +100,42 @@ public class AnalizadorAccesosAServidor
         return paginaADevolver;
     }
 
+    /**
+     * Metodo para obtener la dirección del cliente que ha realizado mayor número de accesos exitosos al servidor. 
+     */
     public String clienteConMasAccesosExitosos()
     {
-        return "";
+        ArrayList<Acceso> acceso = new ArrayList<>(); //Una ArrayList nueva donde haremos una copia de la que tenemos
+        acceso.addAll(accesos);
+        String ipADevolver = null; //Variable String que utilizaremos para almacenar la web con mas coincidencias a devolver
+        int contadorMasCoincidencias = 0; //Contador donde almacenaremos en mayor numero de coincidencias
+        int ipMasCoincidencias = 0;
+        if(accesos.size() > 0){  //Condicion para ver si el ArrayList esta vacio o contiene objetos.
+            for(int i= 0; i < acceso.size(); i++){ //Bucle para borrar las conexiones que no han sido exitosas
+                if (acceso.get(i).getCodigoDeRespuesta() != 200){
+                    acceso.remove(i);
+                    i--;
+                }
+            }
+            for(int i= 0; i < acceso.size() ; i++){
+                int contador = 0; //Contador donde almacenaremos las coincidencias de cada web.
+                int ipCoincidencia = 0;
+                for(int j = i + 1; j < acceso.size() ; j++){ //Bucle para comprobar las coincidencias
+                    if(acceso.get(j).getIp().equals(acceso.get(i).getIp())){
+                        contador ++;
+                        acceso.remove(j);
+                        j--;
+                        ipCoincidencia = Integer.parseInt(acceso.get(i).getIp().substring(10,acceso.get(i).getIp().length()));
+                    }
+                }
+                if(contador > contadorMasCoincidencias || contador == contadorMasCoincidencias && ipMasCoincidencias < ipCoincidencia){ 
+                    contadorMasCoincidencias = contador;
+                    ipADevolver = acceso.get(i).getIp();
+                    ipMasCoincidencias = ipCoincidencia;
+                }
+            }
+        }
+        return ipADevolver;
     }
 
 }
